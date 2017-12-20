@@ -29,9 +29,6 @@ namespace HuffmanCoding {
             var map = CountChars();
             var tree = new HTree(map.OrderBy(pair => pair.Value).ThenByDescending(pair => pair.Key));
             var table = tree.Table;
-//            foreach (var pair in table) {
-//                Console.WriteLine($"{(char) pair.Key}-> {pair.Value}");
-//            }
 
             Encrypt(map, table);
         }
@@ -58,7 +55,7 @@ namespace HuffmanCoding {
         }
 
         private void Encrypt(Dictionary<byte, int> map, Dictionary<byte, BitSet> table) {
-            var destination = Path.ChangeExtension(_path, EncrypedExtension);
+            var destination = _path + EncrypedExtension;
             var bitWriter = new BitWriter(_path, destination, table);
             bitWriter.WriteMap(map);
 

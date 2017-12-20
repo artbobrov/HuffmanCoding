@@ -28,8 +28,9 @@ namespace HuffmanCoding {
             var tree = new HTree(map.OrderBy(pair => pair.Value).ThenByDescending(pair => pair.Key));
             var table = tree.Table;
             var path = Path.GetFullPath(_path);
-            var destination = Path.GetDirectoryName(path) + "/" + Path.GetFileNameWithoutExtension(path) +
-                              "_decoded" + ".txt";
+            var destination = Path.GetDirectoryName(path) + "/" + Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(path)) +
+                              "_decoded" + Path.GetExtension(Path.GetFileNameWithoutExtension(path));
+            
             int size = (int) (stream.Length - stream.Position);
 
             var outputStream = new BinaryWriter(new FileStream(destination, FileMode.Create, FileAccess.Write));
